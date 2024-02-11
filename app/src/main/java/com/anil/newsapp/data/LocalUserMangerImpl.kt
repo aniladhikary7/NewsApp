@@ -7,8 +7,8 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import com.anil.newsapp.domain.manager.LocalUserManger
-import com.anil.util.Constants
-import com.anil.util.Constants.USER_SETTINGS
+import com.anil.newsapp.util.Constants
+import com.anil.newsapp.util.Constants.USER_SETTINGS
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

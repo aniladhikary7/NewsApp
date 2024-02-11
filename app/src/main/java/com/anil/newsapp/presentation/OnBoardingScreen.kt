@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.anil.newsapp.presentation.Dimens.MediumPadding2
 import com.anil.newsapp.presentation.common.NewsButton
 import com.anil.newsapp.presentation.common.NewsTextButton
+import com.anil.newsapp.presentation.onboarding.OnBoardingEvent
 import com.anil.newsapp.presentation.onboarding.components.OnBoardingPage
 import com.anil.newsapp.presentation.onboarding.components.PagerIndicator
 import com.anil.newsapp.presentation.onboarding.pages
@@ -29,7 +30,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(
+    onEvent: (OnBoardingEvent) -> Unit
+) {
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(initialPage = 0) {
             pages.size
@@ -82,8 +85,9 @@ fun OnBoardingScreen() {
                     text = buttonsState.value[1],
                     onClick = {
                         scope.launch {
-                            if (pagerState.currentPage == 3){
+                            if (pagerState.currentPage == 2){
                                 //Navigate to the main screen and save a value in datastore preferences
+                                onEvent(OnBoardingEvent.SaveAppEntry)
                             }else{
                                 pagerState.animateScrollToPage(
                                     page = pagerState.currentPage + 1

@@ -1,4 +1,4 @@
-package com.anil.util
+package com.anil.newsapp.util
 
 object Constants {
 
