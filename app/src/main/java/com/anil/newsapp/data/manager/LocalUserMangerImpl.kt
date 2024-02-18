@@ -1,4 +1,4 @@
-package com.anil.newsapp.data
+package com.anil.newsapp.data.manager
 
 import android.content.Context
 import androidx.datastore.core.DataStore

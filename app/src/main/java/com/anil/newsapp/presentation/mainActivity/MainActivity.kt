@@ -13,6 +13,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import com.anil.newsapp.presentation.navGraph.NavGraph
 import com.anil.newsapp.ui.theme.NewsAppTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -25,16 +26,12 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen().apply {
             setKeepOnScreenCondition(condition = { viewModel.splashCondition.value })
         }
-
         setContent {
-            NewsAppTheme (
-                dynamicColor = false
-            ) {
-
-                //System bar color set to transparent
+            NewsAppTheme(dynamicColor = false) {
                 val isSystemInDarkMode = isSystemInDarkTheme()
                 val systemUiColor = rememberSystemUiController()
                 SideEffect {
@@ -43,7 +40,6 @@ class MainActivity : ComponentActivity() {
                         darkIcons = !isSystemInDarkMode
                     )
                 }
-
                 //Add fillMaxSize()
                 Box(modifier = Modifier.background(MaterialTheme.colorScheme.background).fillMaxSize()) {
                     NavGraph(startDestination = viewModel.startDestination.value)
